@@ -10,4 +10,9 @@ export default defineConfig({
         }),
         svelte({})
     ],
+    server: {
+        hmr: {
+            host: 'localhost'
+        }
+    }
 });
