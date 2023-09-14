@@ -16,6 +16,15 @@ class ProductController extends Controller
 
     public function indexSome (Request $request, $q) {
         $products = Product::search($q)->get();
-        return response()->json($products);
+
+        $data = $products->map(function($record) {
+            $filteredData = array_filter($record->toArray());
+
+            return new Product($filteredData);
+        });
+
+        return response()->json($data);
+
+        // return response()->json($products);
     }
 }
